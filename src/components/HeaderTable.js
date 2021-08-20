@@ -1,21 +1,20 @@
 import React from 'react';
+import '../css/Table.css';
 
 function HeaderTable() {
   return (
-    <tr>
-      <th>Name</th>
-      <th>Climate</th>
-      <th>Created</th>
-      <th>Diameter</th>
-      <th>Edited</th>
-      <th>Films</th>
-      <th>Gravity</th>
-      <th>Orbital Period</th>
-      <th>Population</th>
-      <th>Rotation Period</th>
-      <th>Surface Water</th>
-      <th>Terrain</th>
-      <th>URL</th>
+    <tr className="header-table-container">
+      <th className="header-title">Name</th>
+      <th className="header-title">Climate</th>
+      <th className="header-title">Created</th>
+      <th className="header-title">Diameter</th>
+      <th className="header-title">Edited</th>
+      <th className="header-title">Gravity</th>
+      <th className="header-title">Orbital Period</th>
+      <th className="header-title">Population</th>
+      <th className="header-title">Rotation Period</th>
+      <th className="header-title">Surface Water</th>
+      <th className="header-title">Terrain</th>
     </tr>
   );
 }

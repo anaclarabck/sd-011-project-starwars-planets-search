@@ -1,22 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../css/Table.css';
 
 function TableElements({ planet }) {
   return (
-    <tr key={ planet.name }>
-      <td data-testid="planet-name">{planet.name}</td>
-      <td>{planet.climate}</td>
-      <td>{planet.created}</td>
-      <td>{planet.diameter}</td>
-      <td>{planet.edited}</td>
-      <td>{planet.films}</td>
-      <td>{planet.gravity}</td>
-      <td>{planet.orbital_period}</td>
-      <td>{planet.population}</td>
-      <td>{planet.rotation_period}</td>
-      <td>{planet.surface_water}</td>
-      <td>{planet.terrain}</td>
-      <td>{planet.url}</td>
+    <tr key={ planet.name } className="row-table">
+      <td data-testid="planet-name" className="table-content">{planet.name}</td>
+      <td className="table-content">{planet.climate}</td>
+      <td className="table-content">{planet.created}</td>
+      <td className="table-content">{planet.diameter}</td>
+      <td className="table-content">{planet.edited}</td>
+      <td className="table-content">{planet.gravity}</td>
+      <td className="table-content">{planet.orbital_period}</td>
+      <td className="table-content">{planet.population}</td>
+      <td className="table-content">{planet.rotation_period}</td>
+      <td className="table-content">{planet.surface_water}</td>
+      <td className="table-content">{planet.terrain}</td>
     </tr>
   );
 }

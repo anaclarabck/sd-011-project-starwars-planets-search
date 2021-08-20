@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import PlanetsContext from '../context/PlanetsContext';
 import TableElements from './TableElements';
 import HeaderTable from './HeaderTable';
+import '../css/Table.css';
 
 function Table() {
   const { data } = useContext(PlanetsContext);
@@ -18,15 +19,6 @@ function Table() {
     { value: 'rotation_period', label: 'rotation_period' },
     { value: 'surface_water', label: 'surface_water' },
   ];
-
-  // const orderNames = ['Alderaan', 'Bespin', 'Coruscant', 'Dagobah', 'Endor', 'Hoth', 'Kamino', 'Naboo', 'Tatooine', 'Yavin IV' ];
-  // Qual objeto do array de objetos (data) possui o name === orderNames(index), quando encontrar o objeto
-  // <TableElements planet = {planet} />
-  // function renderByName() {
-  //   const order = orderNames.forEach((element, index) => {
-  //     const nameFilters = data.filter(planet => planet.name === element);
-  //   });
-  // }
 
   function renderTableInputByName(input) {
     const nameFilters = data.map((planet) => {
@@ -91,121 +83,87 @@ function Table() {
 
   return (
     <div>
-      <div>
-        <p>Filtrar por Nome</p>
-        <input
-          type="text"
-          data-testid="name-filter"
-          onChange={ (event) => setFilterPlanets(event.target.value) }
-        />
-      </div>
 
-      <div>
-        <p>Filtrar por valores numéricos</p>
+      <div className="inputs-container">
 
-        { /* FILTRO 1 */ }
-        <div data-testid="filter">
-          <select
-            onChange={ (e) => setSelectColumnFilter(e.target.value) }
-            name="column-filter"
-            data-testid="column-filter"
-          >
-            {updateOptions()}
-          </select>
-          <button type="button" onClick={ () => setUpdateTableBySelect(false) }>X</button>
-          <br />
-        </div>
-
-        { /* FILTRO 2 */ }
-        <div data-testid="filter">
-          <select
-            onChange={ (e) => setSelectComparisonFilter(e.target.value) }
-            name="comparison-filter"
-            data-testid="comparison-filter"
-          >
-            <option value="maior que">maior que</option>
-            <option value="menor que">menor que</option>
-            <option value="igual a">igual a</option>
-          </select>
-          <button
-            type="button"
-            data-testid="filter"
-            onClick={ () => setUpdateTableBySelect(false) }
-          >
-            X
-          </button>
-          <br />
-        </div>
-
-        { /* FILTRO 3 */ }
-        <div data-testid="filter">
+        <div className="filter-by-name-container">
+          <p>Filtrar por Nome</p>
           <input
             type="text"
-            data-testid="value-filter"
-            onChange={ (event) => setInputValueFilter(event.target.value) }
+            data-testid="name-filter"
+            onChange={ (event) => setFilterPlanets(event.target.value) }
+            className="filter-by-name-input"
           />
-          <button
-            type="button"
-            data-testid="filter"
-            onClick={ () => setUpdateTableBySelect(false) }
-          >
-            X
-          </button>
-          <br />
+        </div>
+
+        <div className="filter-by-numbers-container">
+
+          <p>Filtrar por valores numéricos</p>
+
+          <div data-testid="filter">
+            <select
+              onChange={ (e) => setSelectColumnFilter(e.target.value) }
+              name="column-filter"
+              data-testid="column-filter"
+              className="input-select"
+            >
+              {updateOptions()}
+            </select>
+            <button type="button" onClick={ () => setUpdateTableBySelect(false) }>
+              X
+            </button>
+          </div>
+
+          <div data-testid="filter">
+            <select
+              onChange={ (e) => setSelectComparisonFilter(e.target.value) }
+              name="comparison-filter"
+              data-testid="comparison-filter"
+              className="input-select"
+            >
+              <option value="maior que">maior que</option>
+              <option value="menor que">menor que</option>
+              <option value="igual a">igual a</option>
+            </select>
+            <button
+              type="button"
+              data-testid="filter"
+              onClick={ () => setUpdateTableBySelect(false) }
+            >
+              X
+            </button>
+          </div>
+
+          <div data-testid="filter">
+            <input
+              type="text"
+              data-testid="value-filter"
+              onChange={ (event) => setInputValueFilter(event.target.value) }
+              className="input-value"
+            />
+            <button
+              type="button"
+              data-testid="filter"
+              onClick={ () => setUpdateTableBySelect(false) }
+            >
+              X
+            </button>
+          </div>
+
         </div>
 
         <button
           type="button"
           data-testid="button-filter"
           onClick={ () => setUpdateTableBySelect(true) }
+          className="button-filter"
         >
           Filtrar
         </button>
 
-        { /* ESCOLHER ORDENAÇÃO */ }
-        <div>
-          <p>Ordenar</p>
-          <select data-testid="column-sort">
-            <option value="">Name</option>
-            <option value="">Climate</option>
-            <option value="">Created</option>
-            <option value="">Diameter</option>
-            <option value="">Edited</option>
-            <option value="">Films</option>
-            <option value="">Gravity</option>
-            <option value="">Orbital Period</option>
-            <option value="">Population</option>
-            <option value="">Rotation Period</option>
-            <option value="">Surface Water</option>
-            <option value="">Terrain</option>
-            <option value="">URL</option>
-          </select>
-          <br />
-          <label htmlFor="column-sort-input-asc">
-            Ascendente
-            <input
-              type="radio"
-              data-testid="column-sort-input-asc"
-              value="ASC"
-              name="order"
-            />
-          </label>
-          <br />
-          <label htmlFor="column-sort-input-desc">
-            Descendente
-            <input
-              type="radio"
-              data-testid="column-sort-input-desc"
-              value="DESC"
-              name="order"
-            />
-          </label>
-          <br />
-          <button type="button" data-testid="column-sort-button">ORDENAÇÃO</button>
-        </div>
-
       </div>
-      <table>
+
+      <table className="table">
         <thead>
           <HeaderTable />
         </thead>
