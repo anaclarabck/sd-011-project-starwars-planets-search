@@ -11,7 +11,7 @@ function PlanetProvider({ children }) {
     filterByNumericValues: [
       {
         column: '',
-        comparision: '',
+        comparison: '',
         value: '',
       },
     ],
@@ -72,14 +72,17 @@ function PlanetProvider({ children }) {
       ));
       setFilteredPlanets(planetsFiltered);
     } else if (searchByNumeric) {
-      const { filterByNumericValues: [{ column, comparision, value }] } = filters;
+      const { filterByNumericValues } = filters;
+      const lastIndex = filterByNumericValues.length - 1;
+      const lastNumericFilter = filterByNumericValues[lastIndex];
+      const { column, comparison, value } = lastNumericFilter;
 
-      if (comparision === 'maior que') {
+      if (comparison === 'maior que') {
         planetsFiltered = data.filter(
           (planet) => parseInt(planet[column], 10) > parseInt(value, 10),
         );
         setFilteredPlanets(planetsFiltered);
-      } else if (comparision === 'menor que') {
+      } else if (comparison === 'menor que') {
         planetsFiltered = data.filter(
           (planet) => parseInt(planet[column], 10) < parseInt(value, 10),
         );

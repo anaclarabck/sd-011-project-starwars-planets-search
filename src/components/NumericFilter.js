@@ -67,6 +67,7 @@ function NumericFilter() {
         deleteAvailableColumns(column);
       }
       setSearchByNumeric(true);
+      setState({});
       setSearchByName(false);
     }
   }
@@ -78,19 +79,11 @@ function NumericFilter() {
         name="column"
         onChange={ handleChange }
       >
-        <option defaultValue>Escolha uma opção</option>
         {
           availableColumns.map((columnName, index) => (
             <option key={ index } value={ columnName }>{columnName}</option>
           ))
         }
-        {/*
-        <option value="population">population</option>
-        <option value="orbital period">orbital_period</option>
-        <option value="diameter">diameter</option>
-        <option value="rotation_period">rotation_period</option>
-        <option value="surface_water">surface_water</option>
-        */}
       </select>
       <select
         data-testid="comparison-filter"
