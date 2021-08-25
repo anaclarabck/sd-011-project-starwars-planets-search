@@ -3,7 +3,7 @@ import Context from '../context/Context';
 import Selects from './subcomponents/Selects';
 
 function Header() {
-  const { filterByName, filterByNumericValues } = useContext(Context);
+  const { filterByNameF, filterByNumericValuesF } = useContext(Context);
   const initialSelects = { column: '', comparison: '', value: '' };
   const [selects, setSelects] = useState(initialSelects);
 
@@ -15,7 +15,7 @@ function Header() {
           <input
             type="text"
             data-testid="name-filter"
-            onChange={ ({ target }) => filterByName(target.value) }
+            onChange={ ({ target }) => filterByNameF(target.value) }
           />
         </fieldset>
         <fieldset>
@@ -24,7 +24,7 @@ function Header() {
             type="button"
             data-testid="button-filter"
             name="filterButton"
-            onClick={ () => filterByNumericValues(selects) }
+            onClick={ () => filterByNumericValuesF(selects) }
             /* disabled={ !(initialSelects.column && initialSelects.comparison && initialSelects.value) } */
           >
             Filtrar

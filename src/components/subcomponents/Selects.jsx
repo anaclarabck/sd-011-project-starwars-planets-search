@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import comparisonFilter from '../../helpers/comparisonFilter';
 import columnFilter from '../../helpers/columnFilter';
@@ -8,10 +8,19 @@ function Selects(props) {
   const { selects, setSelects } = props;
   const { filters } = useContext(Context);
   const { filterByNumericValues } = filters;
+
   const columnOptions = columnFilter
     .filter((column) => !filterByNumericValues
       .map((filter) => filter.column)
       .includes(column));
+
+  useEffect(() => {
+    setSelects({ ...selects,
+      column: columnOptions[0],
+      comparison: comparisonFilter[0],
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const changeColumn = ({ target }) => {
     setSelects({ ...selects, column: target.value });
@@ -30,8 +39,9 @@ function Selects(props) {
       <select
         data-testid="column-filter"
         onChange={ ({ target }) => changeColumn({ target }) }
-        onClick={ ({ target }) => changeColumn({ target }) }
-        defaultValue={ columnFilter[0] }
+        /* onClick={ ({ target }) => changeColumn({ target }) } */
+        /* defaultValue={ columnOptions[0] } */
+        /* value={ columnS } */
       >
         {columnOptions.map((option) => (<option key={ option }>{ option }</option>))}
       </select>

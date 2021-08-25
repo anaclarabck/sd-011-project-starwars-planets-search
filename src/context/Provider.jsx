@@ -7,15 +7,17 @@ function Provider({ children }) {
   const [data, error] = useFetchPlanets();
   const [filters, setFilters] = useState({
     filterByName: { name: '' },
-    filterByNumericValues: [{ column: '', comparison: '', value: null }],
+    /* filterByNumericValues: [{ column: '', comparison: '', value: null }], */
+    filterByNumericValues: [],
   });
 
-  const filterByName = (name) => {
+  const filterByNameF = (name) => {
     setFilters({ ...filters, filterByName: { name } });
   };
 
-  const filterByNumericValues = ({ column, comparison, value }) => {
-    if (filters.filterByNumericValues[0].column) {
+  const filterByNumericValuesF = ({ column, comparison, value }) => {
+    if (filters.filterByNumericValues.length !== 0) {
+    /* if (filters.filterByNumericValues[0].column) { */
       setFilters({ ...filters,
         filterByNumericValues: [...filters.filterByNumericValues,
           { column, comparison, value }] });
@@ -29,7 +31,8 @@ function Provider({ children }) {
   const removeFilter = (columnFilter) => {
     if (filters.filterByNumericValues.length === 1) {
       setFilters({ ...filters,
-        filterByNumericValues: [{ column: '', comparison: '', value: null }],
+        /* filterByNumericValues: [{ column: '', comparison: '', value: null }], */
+        filterByNumericValues: [],
       });
     } else {
       setFilters({ ...filters,
@@ -43,8 +46,8 @@ function Provider({ children }) {
     data,
     error,
     filters,
-    filterByName,
-    filterByNumericValues,
+    filterByNameF,
+    filterByNumericValuesF,
     removeFilter,
   };
 

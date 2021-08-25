@@ -23,8 +23,9 @@ function tableBodyFilter({ data, filters, keysFilter }) {
   } = filters;
 
   return (data.filter((planet) => {
-    const isOnFilterName = planet.name.includes(name);
-    if (filterByNumericValues[0].column && isOnFilterName) {
+    const isOnFilterName = planet.name.toLowerCase().includes(name.toLowerCase());
+    if (filterByNumericValues.length !== 0 && isOnFilterName) {
+    /* if (filterByNumericValues[0].column && isOnFilterName) { */
       const thoughtFilters = compareFilterValues([filterByNumericValues, planet]);
       if (thoughtFilters === filterByNumericValues.length) {
         return true;
