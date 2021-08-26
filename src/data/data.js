@@ -1,4 +1,5 @@
-const planetInfos = [
+// colunas da tabela
+export const planetInfos = [
   'rotation_period',
   'orbital_period',
   'diameter',
@@ -13,7 +14,8 @@ const planetInfos = [
   'url',
 ];
 
-const dropdownColumns = [
+// seletor dropdown
+export const dropdownColumns = [
   'population',
   'orbital_period',
   'diameter',
@@ -21,10 +23,9 @@ const dropdownColumns = [
   'surface_water',
 ];
 
-const dropdownTag = ['maior que', 'menor que', 'igual a'];
-
-module.exports = {
-  planetInfos,
-  dropdownColumns,
-  dropdownTag,
-};
+// seletor que determina a faixa de valor
+export const dropdownTag = [
+  'maior que',
+  'menor que',
+  'igual a',
+];
